@@ -1,0 +1,24 @@
+.todo{
+  background: #fff;
+  width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  input {
+    width: 100%;
+    border: none;
+    line-height: 24px;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+}
+
+.item-box {
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.gou-icon{
+  font-size: 20px;
+  margin-right: 10px;
+}

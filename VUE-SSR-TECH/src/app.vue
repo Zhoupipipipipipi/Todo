@@ -1,19 +1,24 @@
 <template>
     <div id="app">
-        <div id="cover"></div>
+        <router-view></router-view>
     </div>
 </template>
 <script>
 export default {
     data() {
         return {
-            text: 'abc的11是1'
         }
     }
 }
 </script>
-<style>
-#text{
-    color: red;
+<style lang="scss" scoped>
+#app {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: .8;
 }
 </style>
+

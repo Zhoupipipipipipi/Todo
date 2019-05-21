@@ -5,12 +5,23 @@ const { VueLoaderPlugin } = require('vue-loader')
 const isDev = process.env.NODE_ENV === 'development'
 const webpack = require('webpack')
 
+function resolve (dir) {
+    return path.join(__dirname, './', dir)
+}
+
 const config = {
     target: 'web',
     entry: path.join(__dirname, 'src/index.js'), // 入口 __dirname代表根目录
     output: { // 出口
         filename: 'bundle.js',
         path: path.join(__dirname, 'dist')
+    },
+    resolve: {
+        extensions: ['.js', '.vue', '.json'],
+        alias: {
+          'vue$': 'vue/dist/vue.esm.js',
+          '@': resolve('src')
+        }
     },
     module: {
         rules: [
@@ -30,6 +41,14 @@ const config = {
                 ]
             },
             {
+                test: /\.scss/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
+            {
                 test: /\.styl/,
                 use: [
                     'style-loader',
@@ -44,6 +63,14 @@ const config = {
                 ]
             },
             {
+                test: /\.svg$/,
+                loader: "svg-sprite-loader",
+                include: [resolve("src/icons")],
+                options: {
+                    symbolId: "icon-[name]"
+                }
+            },
+            {
                 test: /\.(gif|jpg|jpeg|png|svg)$/, // 转为base64
                 use: [
                     {
@@ -53,7 +80,8 @@ const config = {
                             name: '[name].[ext]' // 输出名字
                         }
                     }
-                ]
+                ],
+                exclude: [resolve('src/icons')]
             }
         ]
     },
